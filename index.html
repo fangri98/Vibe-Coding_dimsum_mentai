@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dimsum 3R</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Icon -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <a href="#home" class="logo">
+            <i class="fa-solid fa-bowl-food"></i>
+            Dimsum <span>3R</span>
+        </a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+        </nav>
+
+        <button class="cart-button" onclick="openCart()">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span id="cart-count">0</span>
+
+        </button>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <p class="hero-label">
+                <i class="fa-solid fa-fire"></i>
+                FRESH • HANGAT • LEZAT
+            </p>
+
+            <h1>
+                Dimsum Enak
+                <span>Harga Bersahabat.</span>
+            </h1>
+
+            <p class="hero-description">
+                Nikmati dimsum dan wonton lezat dari Dimsum 3R.
+                Pilih menu favoritmu dan pesan dengan mudah.
+            </p>
+
+            <a href="#menu" class="hero-button">
+                Lihat Menu
+                <i class="fa-solid fa-arrow-down"></i>
+            </a>
+
+        </div>
+
+
+        <div class="hero-image">
+
+            <div class="image-glow"></div>
+
+            <img
+                src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=800&q=80"
+                alt="Dimsum"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FITUR ================= -->
+
+    <section class="features">
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+
+            <div>
+                <h3>Pesan Mudah</h3>
+                <p>Pilih menu favoritmu</p>
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-fire"></i>
+            </div>
+
+            <div>
+                <h3>Fresh & Hangat</h3>
+                <p>Dibuat saat dipesan</p>
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-money-bill"></i>
+            </div>
+
+            <div>
+                <h3>Bayar Offline</h3>
+                <p>Bayar langsung di tempat</p>
+            </div>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+
+            <div>
+                <h3>WhatsApp</h3>
+                <p>Pesanan langsung dikirim</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MENU ================= -->
+
+    <section class="menu-section" id="menu">
+
+        <div class="section-title">
+
+            <p>MENU DIMSUM 3R</p>
+
+            <h2>Pilih Menu Favoritmu</h2>
+
+            <span>
+                Pilih ukuran sesuai selera kamu.
+            </span>
+
+        </div>
+
+
+        <div class="menu-container">
+
+
+            <!-- DIMSAM MENTAI -->
+
+            <div class="menu-card">
+
+                <div class="menu-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=600&q=80"
+                        alt="Dimsum Mentai"
+                    >
+
+                    <span class="badge">
+                        FAVORIT
+                    </span>
+
+                </div>
+
+
+                <div class="menu-content">
+
+                    <h3>
+                        Dimsum Mentai
+                    </h3>
+
+                    <p>
+                        Dimsum lembut dengan saus mentai
+                        yang creamy dan gurih.
+                    </p>
+
+
+                    <div class="variant">
+
+                        <span>
+                            4 pcs
+                        </span>
+
+                        <strong>
+                            Rp10.000
+                        </strong>
+
+                        <button
+                            onclick="addToCart('Dimsum Mentai 4 pcs', 10000)">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="variant">
+
+                        <span>
+                            6 pcs
+                        </span>
+
+                        <strong>
+                            Rp15.000
+                        </strong>
+
+                        <button
+                            onclick="addToCart('Dimsum Mentai 6 pcs', 15000)">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="variant">
+
+                        <span>
+                            8 pcs
+                        </span>
+
+                        <strong>
+                            Rp20.000
+                        </strong>
+
+                        <button
+                            onclick="addToCart('Dimsum Mentai 8 pcs', 20000)">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DIMSAM ORI -->
+
+            <div class="menu-card">
+
+                <div class="menu-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?auto=format&fit=crop&w=600&q=80"
+                        alt="Dimsum Ori"
+                    >
+
+                </div>
+
+
+                <div class="menu-content">
+
+                    <h3>
+                        Dimsum Ori
+                    </h3>
+
+                    <p>
+                        Dimsum original dengan rasa gurih
+                        dan lembut.
+                    </p>
+
+
+                    <div class="variant">
+
+                        <span>
+                            4 pcs
+                        </span>
+
+                        <strong>
+                            Rp10.000
+                        </strong>
+
+                        <button
+                            onclick="addToCart('Dimsum Ori 4 pcs', 10000)">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="variant">
+
+                        <span>
+                            6 pcs
+                        </span>
+
+                        <strong>
+                            Rp15.000
+                        </strong>
+
+                        <button
+                            onclick="addToCart('Dimsum Ori 6 pcs', 15000)">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="variant">
+
+                        <span>
+                            8 pcs
+                        </span>
+
+                        <strong>
+                            Rp20.000
+                        </strong>
+
+                        <button
+                            onclick="addToCart('Dimsum Ori 8 pcs', 20000)">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- WONTON GORENG -->
+
+            <div class="menu-card">
+
+                <div class="menu-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1541696490-8744a5dc0228?auto=format&fit=crop&w=600&q=80"
+                        alt="Wonton Goreng"
+                    >
+
+                </div>
+
+
+                <div class="menu-content">
+
+                    <h3>
+                        Wonton Goreng
+                    </h3>
+
+                    <p>
+                        Wonton renyah dengan isian gurih
+                        yang lezat.
+                    </p>
+
+
+                    <div class="variant">
+
+                        <span>
+                            3 pcs
+                        </span>
+
+                        <strong>
+                            Rp5.000
+                        </strong>
+
+                        <button
+                            onclick="addToCart('Wonton Goreng 3 pcs', 5000)">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="variant">
+
+                        <span>
+                            6 pcs
+                        </span>
+
+                        <strong>
+                            Rp10.000
+                        </strong>
+
+                        <button
+                            onclick="addToCart('Wonton Goreng 6 pcs', 10000)">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- WONTON BASAH -->
+
+            <div class="menu-card">
+
+                <div class="menu-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80"
+                        alt="Wonton Basah"
+                    >
+
+                </div>
+
+
+                <div class="menu-content">
+
+                    <h3>
+                        Wonton Basah
+                    </h3>
+
+                    <p>
+                        Wonton lembut dengan kuah yang
+                        gurih dan nikmat.
+                    </p>
+
+
+                    <div class="variant">
+
+                        <span>
+                            3 pcs
+                        </span>
+
+                        <strong>
+                            Rp5.000
+                        </strong>
+
+                        <button
+                            onclick="addToCart('Wonton Basah 3 pcs', 5000)">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="variant">
+
+                        <span>
+                            6 pcs
+                        </span>
+
+                        <strong>
+                            Rp10.000
+                        </strong>
+
+                        <button
+                            onclick="addToCart('Wonton Basah 6 pcs', 10000)">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= CART OVERLAY ================= -->
+
+    <div
+        class="overlay"
+        id="overlay"
+        onclick="closeCart()">
+    </div>
+
+
+    <!-- ================= CART ================= -->
+
+    <aside
+        class="cart-sidebar"
+        id="cart-sidebar">
+
+
+        <div class="cart-header">
+
+            <div>
+
+                <p>KERANJANG</p>
+
+                <h2>
+                    Pesanan Kamu
+                </h2>
+
+            </div>
+
+
+            <button onclick="closeCart()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="cart-items"
+            id="cart-items">
+
+            <div class="empty-cart">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <p>
+                    Keranjang masih kosong
+                </p>
+
+                <span>
+                    Pilih menu untuk mulai memesan.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="cart-footer">
+
+            <div class="total-row">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="cart-total">
+                    Rp0
+                </strong>
+
+            </div>
+
+
+            <button
+                class="checkout-button"
+                onclick="openCheckout()">
+
+                Buat Pesanan
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= CHECKOUT ================= -->
+
+    <div
+        class="modal"
+        id="checkout-modal">
+
+
+        <div class="checkout-box">
+
+
+            <button
+                class="close-modal"
+                onclick="closeCheckout()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+            <div class="checkout-title">
+
+                <p>CHECKOUT</p>
+
+                <h2>
+                    Buat Pesanan
+                </h2>
+
+            </div>
+
+
+            <form id="checkout-form">
+
+
+                <label>
+
+                    Nama
+
+                    <input
+                        type="text"
+                        id="customer-name"
+                        placeholder="Masukkan nama kamu"
+                        required>
+
+                </label>
+
+
+                <label>
+
+                    Catatan
+
+                    <textarea
+                        id="customer-note"
+                        placeholder="Contoh: saus dipisah...">
+                    </textarea>
+
+                </label>
+
+
+                <div class="offline-payment">
+
+                    <div class="payment-icon">
+
+                        <i class="fa-solid fa-money-bill"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Pembayaran Offline
+                        </strong>
+
+                        <p>
+                            Bayar langsung kepada penjual.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="checkout-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="checkout-total">
+                        Rp0
+                    </strong>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="whatsapp-button">
+
+                    <i class="fa-brands fa-whatsapp"></i>
+
+                    Pesan via WhatsApp
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            <i class="fa-solid fa-bowl-food"></i>
+
+            Dimsum <span>3R</span>
+
+        </div>
+
+
+        <p>
+            Dimsum enak, fresh, dan harga bersahabat.
+        </p>
+
+
+        <div class="social">
+
+            <i class="fa-brands fa-instagram"></i>
+
+            <i class="fa-brands fa-whatsapp"></i>
+
+            <i class="fa-brands fa-tiktok"></i>
+
+        </div>
+
+
+        <small>
+            © 2026 Dimsum 3R
+        </small>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
