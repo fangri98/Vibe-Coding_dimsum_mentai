@@ -533,3 +533,38 @@ function sendQuickMessage(message) {
 
     sendMessage();
 }
+// ==========================================
+// BUKA / TUTUP CHATBOT
+// ==========================================
+
+function toggleChat() {
+
+    const chatbot = document.getElementById("chatbot");
+    const toggleButton = document.querySelector(".chat-toggle");
+
+    if (chatbot.style.display === "block") {
+
+        chatbot.style.display = "none";
+        toggleButton.style.display = "flex";
+
+    } else {
+
+        chatbot.style.display = "block";
+        toggleButton.style.display = "none";
+
+    }
+}
+
+
+// ==========================================
+// PILIHAN CEPAT CHATBOT
+// ==========================================
+
+function sendQuickMessage(message) {
+
+    const input = document.getElementById("chat-input");
+
+    input.value = message;
+
+    sendMessage();
+}

@@ -1376,10 +1376,14 @@ footer small {
    CHATBOT DIMSUM 3R
 ========================================== */
 
-/* TOMBOL BUKA CHAT */
+
+/* ==========================================
+   TOMBOL BUKA CHAT
+========================================== */
 
 .chat-toggle {
     position: fixed;
+
     right: 25px;
     bottom: 25px;
 
@@ -1394,21 +1398,31 @@ footer small {
 
     font-size: 22px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     cursor: pointer;
 
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.20);
 
     z-index: 9999;
 
-    transition: 0.2s;
+    transition: transform 0.2s ease,
+                background 0.2s ease;
 }
+
 
 .chat-toggle:hover {
     transform: scale(1.08);
+
+    background: #b45309;
 }
 
 
-/* KOTAK CHAT */
+/* ==========================================
+   KOTAK CHAT
+========================================== */
 
 .chatbot {
     position: fixed;
@@ -1432,7 +1446,9 @@ footer small {
 }
 
 
-/* HEADER */
+/* ==========================================
+   HEADER
+========================================== */
 
 .chat-header {
     background: #d97706;
@@ -1443,9 +1459,9 @@ footer small {
 
     display: flex;
 
-    justify-content: space-between;
-
     align-items: center;
+
+    justify-content: space-between;
 }
 
 
@@ -1458,18 +1474,22 @@ footer small {
 }
 
 
+/* ICON HEADER */
+
 .chat-icon {
     width: 40px;
     height: 40px;
 
     border-radius: 50%;
 
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.20);
 
     display: flex;
 
     align-items: center;
     justify-content: center;
+
+    font-size: 17px;
 }
 
 
@@ -1483,28 +1503,51 @@ footer small {
 .chat-header-info span {
     display: block;
 
+    margin-top: 2px;
+
     font-size: 11px;
 
-    opacity: 0.8;
+    opacity: 0.85;
 }
 
 
-/* TOMBOL CLOSE */
+/* ==========================================
+   TOMBOL CLOSE
+========================================== */
 
 .chat-close {
+    width: 32px;
+    height: 32px;
+
     border: none;
 
     background: transparent;
 
     color: white;
 
-    font-size: 20px;
+    font-size: 19px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
 
     cursor: pointer;
+
+    border-radius: 8px;
+
+    transition: background 0.2s ease;
 }
 
 
-/* AREA CHAT */
+.chat-close:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+
+/* ==========================================
+   AREA PERCAKAPAN
+========================================== */
 
 .chat-box {
     height: 300px;
@@ -1523,7 +1566,23 @@ footer small {
 }
 
 
-/* PESAN BOT */
+/* Scrollbar */
+
+.chat-box::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+.chat-box::-webkit-scrollbar-thumb {
+    background: #d6d6d6;
+
+    border-radius: 10px;
+}
+
+
+/* ==========================================
+   PESAN BOT
+========================================== */
 
 .bot-message {
     align-self: flex-start;
@@ -1544,7 +1603,9 @@ footer small {
 }
 
 
-/* PESAN USER */
+/* ==========================================
+   PESAN USER
+========================================== */
 
 .user-message {
     align-self: flex-end;
@@ -1565,7 +1626,9 @@ footer small {
 }
 
 
-/* PILIHAN CEPAT */
+/* ==========================================
+   PILIHAN CEPAT
+========================================== */
 
 .quick-options {
     display: flex;
@@ -1579,6 +1642,8 @@ footer small {
 
 
 .quick-options button {
+    width: 100%;
+
     border: 1px solid #f0c48a;
 
     background: white;
@@ -1589,6 +1654,12 @@ footer small {
 
     border-radius: 10px;
 
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
     text-align: left;
 
     cursor: pointer;
@@ -1597,7 +1668,16 @@ footer small {
 
     font-size: 12px;
 
-    transition: 0.2s;
+    transition: all 0.2s ease;
+}
+
+
+.quick-options button i {
+    width: 16px;
+
+    text-align: center;
+
+    font-size: 13px;
 }
 
 
@@ -1605,13 +1685,19 @@ footer small {
     background: #fff3df;
 
     border-color: #d97706;
+
+    transform: translateX(2px);
 }
 
 
-/* INPUT */
+/* ==========================================
+   AREA INPUT
+========================================== */
 
 .chat-input-area {
     display: flex;
+
+    align-items: center;
 
     gap: 8px;
 
@@ -1626,6 +1712,8 @@ footer small {
 .chat-input-area input {
     flex: 1;
 
+    min-width: 0;
+
     border: 1px solid #ddd;
 
     border-radius: 10px;
@@ -1637,6 +1725,8 @@ footer small {
     font-family: inherit;
 
     font-size: 13px;
+
+    background: white;
 }
 
 
@@ -1645,8 +1735,15 @@ footer small {
 }
 
 
+/* ==========================================
+   TOMBOL KIRIM
+========================================== */
+
 .chat-input-area button {
     width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
 
     border: none;
 
@@ -1656,9 +1753,14 @@ footer small {
 
     color: white;
 
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
     cursor: pointer;
 
-    transition: 0.2s;
+    transition: background 0.2s ease;
 }
 
 
@@ -1667,7 +1769,9 @@ footer small {
 }
 
 
-/* MOBILE */
+/* ==========================================
+   MOBILE
+========================================== */
 
 @media (max-width: 600px) {
 
@@ -1679,10 +1783,15 @@ footer small {
         width: auto;
     }
 
+
     .chat-toggle {
         right: 15px;
         bottom: 15px;
+
+        width: 54px;
+        height: 54px;
     }
+
 
     .chat-box {
         height: 260px;

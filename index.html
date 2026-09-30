@@ -710,81 +710,88 @@
     <button class="chat-toggle" onclick="toggleChat()">
         <i class="fa-solid fa-comment"></i>
     </button>
-    
-    
+
+
     <!-- Kotak chatbot -->
     <div class="chatbot" id="chatbot">
-    
-        <!-- Header -->
+
+        <!-- HEADER CHAT -->
         <div class="chat-header">
-        
+
             <div class="chat-header-info">
+
                 <div class="chat-icon">
-                    <i class="fa-solid fa-bowl-food"></i>
+                    <i class="fa-solid fa-headset"></i>
                 </div>
-            
+
                 <div>
                     <strong>Dimsum 3R</strong>
                     <span>Bot Bantuan</span>
                 </div>
+
             </div>
-        
+
             <button class="chat-close" onclick="toggleChat()">
                 <i class="fa-solid fa-xmark"></i>
             </button>
-        
+
         </div>
-    
-    
-        <!-- Percakapan -->
+
+
+        <!-- AREA CHAT -->
         <div id="chat-box" class="chat-box">
-        
+
+            <!-- Pesan awal bot -->
             <div class="bot-message">
-                Halo! 👋<br>
+                Halo! 
+                <br>
                 Selamat datang di Dimsum 3R.
                 <br><br>
-                Aku bisa membantu kamu mencari informasi tentang:
+                Saya bisa membantu kamu mencari informasi tentang:
             </div>
-        
-        
-            <!-- Pilihan cepat -->
+
+
+            <!-- PILIHAN CEPAT -->
             <div class="quick-options">
-            
+
                 <button onclick="sendQuickMessage('menu')">
-                    🍜 Lihat Menu
+                    <i class="fa-solid fa-utensils"></i>
+                    <span>Lihat Menu</span>
                 </button>
-            
+
                 <button onclick="sendQuickMessage('harga')">
-                    💰 Tanya Harga
+                    <i class="fa-solid fa-tag"></i>
+                    <span>Tanya Harga</span>
                 </button>
-            
+
                 <button onclick="sendQuickMessage('pesan')">
-                    🛒 Cara Pesan
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Cara Pesan</span>
                 </button>
-            
+
             </div>
-        
+
         </div>
-    
-    
-        <!-- Input -->
+
+
+        <!-- INPUT CHAT -->
         <div class="chat-input-area">
-        
+
             <input
                 type="text"
                 id="chat-input"
                 placeholder="Tulis pesan..."
                 onkeydown="if(event.key === 'Enter') sendMessage()"
             >
-        
+
             <button onclick="sendMessage()">
                 <i class="fa-solid fa-paper-plane"></i>
             </button>
-        
+
         </div>
-    
-    </div>
-    <!-- ================= FOOTER ================= -->
+
+    </div>    
+<!-- ================= FOOTER ================= -->
 
     <footer>
 
