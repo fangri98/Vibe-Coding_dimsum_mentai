@@ -1376,95 +1376,298 @@ footer small {
    CHATBOT DIMSUM 3R
 ========================================== */
 
-.chatbot {
+/* TOMBOL BUKA CHAT */
+
+.chat-toggle {
     position: fixed;
     right: 25px;
     bottom: 25px;
-    width: 340px;
-    background: white;
-    border-radius: 18px;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
-    overflow: hidden;
+
+    width: 58px;
+    height: 58px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #d97706;
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+
     z-index: 9999;
+
+    transition: 0.2s;
 }
 
-/* Area percakapan */
+.chat-toggle:hover {
+    transform: scale(1.08);
+}
 
-.chat-box {
-    height: 300px;
-    padding: 18px;
-    overflow-y: auto;
+
+/* KOTAK CHAT */
+
+.chatbot {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    width: 350px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.22);
+
+    z-index: 10000;
+
+    display: none;
+}
+
+
+/* HEADER */
+
+.chat-header {
+    background: #d97706;
+
+    color: white;
+
+    padding: 14px 16px;
+
     display: flex;
-    flex-direction: column;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.chat-header-info {
+    display: flex;
+
+    align-items: center;
+
     gap: 10px;
 }
 
-/* Pesan bot */
+
+.chat-icon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.2);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.chat-header-info strong {
+    display: block;
+
+    font-size: 15px;
+}
+
+
+.chat-header-info span {
+    display: block;
+
+    font-size: 11px;
+
+    opacity: 0.8;
+}
+
+
+/* TOMBOL CLOSE */
+
+.chat-close {
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+/* AREA CHAT */
+
+.chat-box {
+    height: 300px;
+
+    padding: 16px;
+
+    overflow-y: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    background: #fffaf5;
+}
+
+
+/* PESAN BOT */
 
 .bot-message {
     align-self: flex-start;
-    max-width: 80%;
-    padding: 10px 14px;
-    background: #f1f5f4;
+
+    max-width: 82%;
+
+    padding: 10px 13px;
+
+    background: #f3f4f6;
+
     color: #333;
+
     border-radius: 14px 14px 14px 4px;
-    font-size: 14px;
+
+    font-size: 13px;
+
     line-height: 1.5;
 }
 
-/* Pesan user */
+
+/* PESAN USER */
 
 .user-message {
     align-self: flex-end;
-    max-width: 80%;
-    padding: 10px 14px;
-    background: #166534;
+
+    max-width: 82%;
+
+    padding: 10px 13px;
+
+    background: #d97706;
+
     color: white;
+
     border-radius: 14px 14px 4px 14px;
-    font-size: 14px;
+
+    font-size: 13px;
+
     line-height: 1.5;
 }
 
-/* Input */
+
+/* PILIHAN CEPAT */
+
+.quick-options {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-top: 2px;
+}
+
+
+.quick-options button {
+    border: 1px solid #f0c48a;
+
+    background: white;
+
+    color: #b45309;
+
+    padding: 9px 12px;
+
+    border-radius: 10px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    transition: 0.2s;
+}
+
+
+.quick-options button:hover {
+    background: #fff3df;
+
+    border-color: #d97706;
+}
+
+
+/* INPUT */
 
 .chat-input-area {
     display: flex;
+
     gap: 8px;
-    padding: 12px;
+
+    padding: 11px;
+
+    background: white;
+
     border-top: 1px solid #eee;
 }
 
+
 .chat-input-area input {
     flex: 1;
+
     border: 1px solid #ddd;
+
     border-radius: 10px;
+
     padding: 10px 12px;
+
     outline: none;
+
     font-family: inherit;
+
+    font-size: 13px;
 }
+
 
 .chat-input-area input:focus {
-    border-color: #166534;
+    border-color: #d97706;
 }
 
-/* Tombol kirim */
 
 .chat-input-area button {
+    width: 42px;
+
     border: none;
-    background: #166534;
-    color: white;
-    padding: 10px 15px;
+
     border-radius: 10px;
+
+    background: #d97706;
+
+    color: white;
+
     cursor: pointer;
-    font-family: inherit;
-    font-weight: 600;
+
+    transition: 0.2s;
 }
+
 
 .chat-input-area button:hover {
-    opacity: 0.9;
+    background: #b45309;
 }
 
-/* Mobile */
+
+/* MOBILE */
 
 @media (max-width: 600px) {
 
@@ -1472,10 +1675,16 @@ footer small {
         right: 12px;
         left: 12px;
         bottom: 12px;
+
         width: auto;
     }
 
+    .chat-toggle {
+        right: 15px;
+        bottom: 15px;
+    }
+
     .chat-box {
-        height: 250px;
+        height: 260px;
     }
 }
