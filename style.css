@@ -1797,3 +1797,8 @@ footer small {
         height: 260px;
     }
 }
+/* Mencegah gambar di-drag */
+img {
+    -webkit-user-drag: none;
+    user-select: none;
+}
