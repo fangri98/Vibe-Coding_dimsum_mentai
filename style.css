@@ -1371,3 +1371,111 @@ footer small {
     }
 
 }
+
+/* ==========================================
+   CHATBOT DIMSUM 3R
+========================================== */
+
+.chatbot {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 340px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    z-index: 9999;
+}
+
+/* Area percakapan */
+
+.chat-box {
+    height: 300px;
+    padding: 18px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Pesan bot */
+
+.bot-message {
+    align-self: flex-start;
+    max-width: 80%;
+    padding: 10px 14px;
+    background: #f1f5f4;
+    color: #333;
+    border-radius: 14px 14px 14px 4px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Pesan user */
+
+.user-message {
+    align-self: flex-end;
+    max-width: 80%;
+    padding: 10px 14px;
+    background: #166534;
+    color: white;
+    border-radius: 14px 14px 4px 14px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Input */
+
+.chat-input-area {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    border-top: 1px solid #eee;
+}
+
+.chat-input-area input {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 12px;
+    outline: none;
+    font-family: inherit;
+}
+
+.chat-input-area input:focus {
+    border-color: #166534;
+}
+
+/* Tombol kirim */
+
+.chat-input-area button {
+    border: none;
+    background: #166534;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.chat-input-area button:hover {
+    opacity: 0.9;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .chatbot {
+        right: 12px;
+        left: 12px;
+        bottom: 12px;
+        width: auto;
+    }
+
+    .chat-box {
+        height: 250px;
+    }
+}

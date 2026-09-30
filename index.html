@@ -704,6 +704,28 @@
 
     </div>
 
+    <div class="chatbot">
+
+        <div id="chat-box" class="chat-box">
+            <div class="bot-message">
+                Halo! 👋 Ada yang bisa saya bantu?
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <input
+                type="text"
+                id="chat-input"
+                placeholder="Tulis pesan..."
+                onkeydown="if(event.key === 'Enter') sendMessage()"
+            >
+
+            <button onclick="sendMessage()">
+                Kirim
+            </button>
+        </div>
+
+    </div>
 
     <!-- ================= FOOTER ================= -->
 
