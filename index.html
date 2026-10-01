@@ -658,56 +658,29 @@
                 </label>
 
 
-        <div class="payment-options">
-        
-            <label class="payment-option active" id="offline-option">
-            
-                <input
-                    type="radio"
-                    name="payment"
-                    value="offline"
-                    checked
-                    onchange="selectPaymentMethod('offline')"
-                >
-            
-                <i class="fa-solid fa-money-bill"></i>
-            
-                <div>
-                    <strong>Pembayaran Offline</strong>
-                
-                    <p>
-                        Bayar langsung kepada penjual.
-                    </p>
+                <div class="offline-payment">
+
+                    <div class="payment-icon">
+
+                        <i class="fa-solid fa-money-bill"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Pembayaran Offline
+                        </strong>
+
+                        <p>
+                            Bayar langsung kepada penjual.
+                        </p>
+
+                    </div>
+
                 </div>
-            
-            </label>
-        
-        
-            <label class="payment-option" id="online-option">
-            
-                <input
-                    type="radio"
-                    name="payment"
-                    value="online"
-                    onchange="selectPaymentMethod('online')"
-                >
-            
-                <i class="fa-solid fa-credit-card"></i>
-            
-                <div>
-                    <strong>Pembayaran Online</strong>
-                
-                    <p>
-                        Bayar menggunakan Midtrans.
-                    </p>
-                </div>
-            
-            </label>
-        
-        </div>
-        
-        
-        <div id="payment-info"></div>
+
 
                 <div class="checkout-total">
 
