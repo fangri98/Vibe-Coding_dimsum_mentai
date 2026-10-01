@@ -38,7 +38,7 @@ def chat(request: ChatRequest):
         )
 
     elif "halo" in message or "hai" in message:
-        reply = "Halo! 👋 Ada yang bisa saya bantu?"
+        reply = "Halo!  Ada yang bisa saya bantu?"
 
     elif "pesan" in message:
         reply = (
