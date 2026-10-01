@@ -322,17 +322,76 @@ function closeCheckout() {
 
 
 // ==========================================
-// KIRIM PESAN KE WHATSAPP
+// KONFIGURASI BACKEND
+// ==========================================
+
+const API_BASE_URL = "http://127.0.0.1:8000";
+
+
+// ==========================================
+// METODE PEMBAYARAN
+// ==========================================
+
+let selectedPaymentMethod = "offline";
+
+
+function selectPaymentMethod(method) {
+
+    selectedPaymentMethod = method;
+
+
+    const offlineOption =
+        document.getElementById("offline-option");
+
+    const onlineOption =
+        document.getElementById("online-option");
+
+    const paymentInfo =
+        document.getElementById("payment-info");
+
+
+    offlineOption.classList.remove("active");
+
+    onlineOption.classList.remove("active");
+
+
+    if (method === "offline") {
+
+        offlineOption.classList.add("active");
+
+
+        paymentInfo.innerHTML = `
+            <p class="payment-info-text">
+                Bayar langsung kepada penjual.
+            </p>
+        `;
+
+    } else {
+
+        onlineOption.classList.add("active");
+
+
+        paymentInfo.innerHTML = `
+            <p class="payment-info-text">
+                Kamu akan diarahkan ke halaman pembayaran Midtrans.
+            </p>
+        `;
+
+    }
+
+}
+
+
+// ==========================================
+// CHECKOUT
 // ==========================================
 
 document
     .getElementById("checkout-form")
-    .addEventListener("submit", function(event) {
+    .addEventListener("submit", async function(event) {
 
         event.preventDefault();
 
-
-        // Cek keranjang
 
         if (cart.length === 0) {
 
@@ -345,16 +404,12 @@ document
         }
 
 
-        // Ambil nama
-
         const name =
             document
                 .getElementById("customer-name")
                 .value
                 .trim();
 
-
-        // Ambil catatan
 
         const note =
             document
@@ -363,17 +418,21 @@ document
                 .trim();
 
 
-        // Total
+        if (!name) {
+
+            alert(
+                "Nama wajib diisi."
+            );
+
+            return;
+
+        }
+
 
         let total = 0;
 
 
-        // Daftar pesanan
-
-        let orderList = "";
-
-
-        cart.forEach(item => {
+        const items = cart.map(item => {
 
             const subtotal =
                 item.price * item.quantity;
@@ -382,60 +441,328 @@ document
             total += subtotal;
 
 
-            orderList +=
-                `• ${item.name} x${item.quantity} — ${formatRupiah(subtotal)}\n`;
+            return {
+
+                name: item.name,
+
+                price: item.price,
+
+                quantity: item.quantity,
+
+                subtotal: subtotal
+
+            };
 
         });
 
 
-        // =====================================
-        // PESAN WHATSAPP
-        // =====================================
+        const orderData = {
 
-        const message = `🍜 PESANAN DIMSUM 3R
+            name: name,
 
-Nama: ${name}
+            note: note,
 
-Pesanan:
-${orderList}
-Total: ${formatRupiah(total)}
+            payment_method:
+                selectedPaymentMethod,
 
-Pembayaran: Offline
-Catatan: ${note || "-"}`;
+            total: total,
 
+            items: items
 
-        // Buat URL WhatsApp
-
-        const whatsappURL =
-            `https://wa.me/${STORE_WHATSAPP}?text=${encodeURIComponent(message)}`;
+        };
 
 
-        // Buka WhatsApp
+        try {
 
-        window.open(
-            whatsappURL,
-            "_blank"
+            if (
+                selectedPaymentMethod ===
+                "offline"
+            ) {
+
+                await createOfflineOrder(
+                    orderData
+                );
+
+            } else {
+
+                await createOnlinePayment(
+                    orderData
+                );
+
+            }
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                error.message ||
+                "Terjadi kesalahan."
+            );
+
+        }
+
+    });
+
+
+// ==========================================
+// PESANAN OFFLINE
+// ==========================================
+
+async function createOfflineOrder(
+    orderData
+) {
+
+    const response =
+        await fetch(
+            `${API_BASE_URL}/orders/offline`,
+            {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body:
+                    JSON.stringify(orderData)
+
+            }
         );
 
 
-        // Kosongkan keranjang
-
-        cart = [];
-
-
-        updateCart();
+    const data =
+        await response.json();
 
 
-        // Reset form
+    if (!response.ok) {
 
-        this.reset();
+        throw new Error(
+            data.detail ||
+            "Gagal membuat pesanan."
+        );
+
+    }
 
 
-        // Tutup checkout
+    // Buat pesan WhatsApp
+    let orderList = "";
 
-        closeCheckout();
+
+    orderData.items.forEach(item => {
+
+        orderList +=
+            `• ${item.name} x${item.quantity} — ${formatRupiah(item.subtotal)}\n`;
 
     });
+
+
+    const message =
+        `🍜 PESANAN DIMSUM 3R\n\n` +
+
+        `Nomor Pesanan: ${data.order_id}\n\n` +
+
+        `Nama: ${orderData.name}\n\n` +
+
+        `Pesanan:\n${orderList}\n` +
+
+        `Total: ${formatRupiah(orderData.total)}\n\n` +
+
+        `Pembayaran: Offline\n` +
+
+        `Catatan: ${orderData.note || "-"}`;
+
+
+    const whatsappURL =
+        `https://wa.me/${STORE_WHATSAPP}?text=${encodeURIComponent(message)}`;
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+
+    cart = [];
+
+
+    updateCart();
+
+
+    thisResetCheckout();
+
+
+    closeCheckout();
+
+}
+
+
+// ==========================================
+// PEMBAYARAN ONLINE
+// ==========================================
+
+async function createOnlinePayment(
+    orderData
+) {
+
+    const response =
+        await fetch(
+            `${API_BASE_URL}/payments/create`,
+            {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body:
+                    JSON.stringify(orderData)
+
+            }
+        );
+
+
+    const data =
+        await response.json();
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.detail ||
+            "Gagal membuat pembayaran."
+        );
+
+    }
+
+
+    if (!data.token) {
+
+        throw new Error(
+            "Token pembayaran Midtrans tidak ditemukan."
+        );
+
+    }
+
+
+    if (
+        typeof window.snap ===
+        "undefined"
+    ) {
+
+        throw new Error(
+            "Midtrans belum terhubung. Periksa Client Key."
+        );
+
+    }
+
+
+    window.snap.pay(
+        data.token,
+        {
+
+            onSuccess: function(result) {
+
+                console.log(
+                    "Pembayaran berhasil:",
+                    result
+                );
+
+
+                alert(
+                    "Pembayaran berhasil!"
+                );
+
+
+                cart = [];
+
+
+                updateCart();
+
+
+                thisResetCheckout();
+
+
+                closeCheckout();
+
+            },
+
+
+            onPending: function(result) {
+
+                console.log(
+                    "Pembayaran pending:",
+                    result
+                );
+
+
+                alert(
+                    "Pembayaran sedang menunggu."
+                );
+
+            },
+
+
+            onError: function(result) {
+
+                console.error(
+                    "Pembayaran gagal:",
+                    result
+                );
+
+
+                alert(
+                    "Pembayaran gagal."
+                );
+
+            },
+
+
+            onClose: function() {
+
+                console.log(
+                    "Halaman pembayaran ditutup."
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// RESET CHECKOUT
+// ==========================================
+
+function thisResetCheckout() {
+
+    const form =
+        document.getElementById(
+            "checkout-form"
+        );
+
+
+    if (form) {
+
+        form.reset();
+
+    }
+
+
+    selectedPaymentMethod =
+        "offline";
+
+
+    selectPaymentMethod(
+        "offline"
+    );
+
+}
 
 
 // ==========================================
@@ -444,127 +771,6 @@ Catatan: ${note || "-"}`;
 
 updateCart();
 
-// ==========================================
-// CHATBOT DIMSUM 3R
-// ==========================================
-
-async function sendMessage() {
-    const input = document.getElementById("chat-input");
-    const chatBox = document.getElementById("chat-box");
-
-    const message = input.value.trim();
-
-    if (!message) {
-        return;
-    }
-
-    // Tampilkan pesan user
-    chatBox.innerHTML += `
-        <div class="user-message">
-            ${message}
-        </div>
-    `;
-
-    input.value = "";
-
-    try {
-        const response = await fetch("http://127.0.0.1:8000/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                message: message
-            })
-        });
-
-        const data = await response.json();
-
-        // Tampilkan jawaban bot
-        chatBox.innerHTML += `
-            <div class="bot-message">
-                ${data.reply}
-            </div>
-        `;
-
-        chatBox.scrollTop = chatBox.scrollHeight;
-
-    } catch (error) {
-        console.error(error);
-
-        chatBox.innerHTML += `
-            <div class="bot-message">
-                Bot sedang tidak bisa dihubungi.
-            </div>
-        `;
-    }
-}
-
-// ==========================================
-// BUKA / TUTUP CHATBOT
-// ==========================================
-
-function toggleChat() {
-
-    const chatbot = document.getElementById("chatbot");
-    const toggleButton = document.querySelector(".chat-toggle");
-
-    if (chatbot.style.display === "block") {
-
-        chatbot.style.display = "none";
-        toggleButton.style.display = "flex";
-
-    } else {
-
-        chatbot.style.display = "block";
-        toggleButton.style.display = "none";
-
-    }
-}
-// ==========================================
-// PILIHAN CEPAT CHATBOT
-// ==========================================
-
-function sendQuickMessage(message) {
-
-    const input = document.getElementById("chat-input");
-
-    input.value = message;
-
-    sendMessage();
-}
-// ==========================================
-// BUKA / TUTUP CHATBOT
-// ==========================================
-
-function toggleChat() {
-
-    const chatbot = document.getElementById("chatbot");
-    const toggleButton = document.querySelector(".chat-toggle");
-
-    if (chatbot.style.display === "block") {
-
-        chatbot.style.display = "none";
-        toggleButton.style.display = "flex";
-
-    } else {
-
-        chatbot.style.display = "block";
-        toggleButton.style.display = "none";
-
-    }
-}
-
-
-// ==========================================
-// PILIHAN CEPAT CHATBOT
-// ==========================================
-
-function sendQuickMessage(message) {
-
-    const input = document.getElementById("chat-input");
-
-    input.value = message;
-
-    sendMessage();
-}
+selectPaymentMethod(
+    "offline"
+);

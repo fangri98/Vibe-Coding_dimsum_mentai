@@ -1802,3 +1802,48 @@ img {
     -webkit-user-drag: none;
     user-select: none;
 }
+
+.payment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid #382c25;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.payment-option.active {
+    border-color: #f47b36;
+    background: rgba(244, 123, 54, 0.08);
+}
+
+.payment-option input {
+    accent-color: #f47b36;
+}
+
+.payment-option i {
+    color: #f47b36;
+}
+
+.payment-option p {
+    margin: 3px 0 0;
+    font-size: 12px;
+    color: #888;
+}
+
+@media (max-width: 600px) {
+
+    .payment-options {
+        grid-template-columns: 1fr;
+    }
+
+}
