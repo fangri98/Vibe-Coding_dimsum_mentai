@@ -393,13 +393,10 @@ document
         // =====================================
 
         const message = `🍜 PESANAN DIMSUM 3R
-
 Nama: ${name}
-
 Pesanan:
 ${orderList}
 Total: ${formatRupiah(total)}
-
 Pembayaran: Offline
 Catatan: ${note || "-"}`;
 
